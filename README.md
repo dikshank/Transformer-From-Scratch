@@ -15,3 +15,17 @@ The inputs here represent the numerical tokens of the source language. For examp
 Transformers are unable to get the sequence of a sentence because, unlike RNNs where we pass the sentence, in transformer we pass the complete sentence all at once so transformer have almost no understanding of the positions of these words inside sentence.
 
 The Positional encoding are some number that we add in our word emebeddings. Let's say we have two word car and vechicle, when we have "perfect" word embeddings for both these words then we should definately see some similarity between these, because both of the words are obviously similar. And When we add positional encoding to our word embeddings then obviously these embeddings will change. So we must add positional encodings that are not too larger because we don't want to change the sementic similarity among different words by adding large numbers of position and irrespective of what word comes first, our positional encoding should remain the same. In other words, our positional encoding must not depend of the type of the word we have at any index. One possible solution what the the authors of 'Attention is all you need" applied, which is using sin and cosine function to get the positional embeddings.
+
+For even indices in the dimension:
+$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
+
+For odd indices in the dimension:
+$$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
+
+$\text{pos is position of the word}$ <br>
+$ \text{i is index of embedding} $ <br>
+$d_{model}\ \text{is dimension of our word embedding which is usually 512, but that can vary if you are using pretrained word embeddings}$<br>
+$\text{The interger 10000 is represented as n}$
+
+
+Let's see this in more detail by plotting these functions
