@@ -4,6 +4,7 @@
 
 The above image is complete transformer architecture
 
+<br><br>
 ![image](https://github.com/dikshank/Transformer-From-Scratch/assets/65603832/b60b0ff0-0eba-4536-b6e7-ab4e93283c22)
 This is the initial part of a transformer where it takes input and converts it into word embeddings and then adds the positional information in the created word embeddings.
 
