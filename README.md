@@ -4,28 +4,25 @@
 
 The above image is complete transformer architecture
 
-<br><br>
-![image](https://github.com/dikshank/Transformer-From-Scratch/assets/65603832/b60b0ff0-0eba-4536-b6e7-ab4e93283c22)
-This is the initial part of a transformer where it takes input and converts it into word embeddings and then adds the positional information in the created word embeddings.
+Transformer models, first introduced in the paper "Attention is All You Need" by Vaswani et al., are a type of model architecture used in the field of deep learning, particularly for handling sequential data in tasks such as language translation, text summarization, sentiment analysis, etc. The key innovation of transformer models is the self-attention mechanism, which allows the model to weigh the relevance of each part of the input sequence when producing an output.
 
-The inputs here represent the numerical tokens of the source language. For example let's say you have a sentence ['It is a nice place'], then this will be preprocessed and we will finally convert it to a number vector like [2,3,4,5,6] where each number is just index of our word and this numbering is based on the tokenizer we use.
+Here's a simplified description of how to implement a transformer model from scratch:
 
-<font color='cyan'>THE LOGIC BEHIND POSITIONAL ENCODING</font>
+Embedding Layer: First, the input data (usually text) is converted into vectors using an embedding layer. This could be a simple learned embedding or a pre-trained embedding like Word2Vec or GloVe.
 
-Transformers are unable to get the sequence of a sentence because, unlike RNNs where we pass the sentence, in transformer we pass the complete sentence all at once so transformer have almost no understanding of the positions of these words inside sentence.
+Positional Encoding: Transformers do not inherently capture the order of the data (since they are not recurrent like RNNs or LSTMs), so positional encoding is added to the input embeddings to incorporate the sequence order.
 
-The Positional encoding are some number that we add in our word emebeddings. Let's say we have two word car and vechicle, when we have "perfect" word embeddings for both these words then we should definately see some similarity between these, because both of the words are obviously similar. And When we add positional encoding to our word embeddings then obviously these embeddings will change. So we must add positional encodings that are not too larger because we don't want to change the sementic similarity among different words by adding large numbers of position and irrespective of what word comes first, our positional encoding should remain the same. In other words, our positional encoding must not depend of the type of the word we have at any index. One possible solution what the the authors of 'Attention is all you need" applied, which is using sin and cosine function to get the positional embeddings.
+Self-Attention Mechanism: This is the key innovation of the transformer model. Self-attention allows the model to look at an input sequence and determine which parts are relevant to each other. The output of this layer is a weighted sum of the inputs, where the weights are determined by the attention scores.
 
-For even indices in the dimension:
-$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
+Feed-Forward Neural Networks: After the self-attention layer, the data is passed through a couple of feed-forward neural networks. The output of these networks is then normalized and added to the input of the layer (this is called a residual connection).
 
-For odd indices in the dimension:
-$$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
+Encoder and Decoder: The architecture mentioned above constitutes an encoder. In a full transformer model, there are multiple such encoders stacked together. Similarly, the model has a set of decoders which are also stacked together. The final output of the model is passed through a linear layer and a softmax function to produce the predictions.
 
-$\text{pos is position of the word}$ <br>
-$ \text{i is index of embedding} $ <br>
-$d_{model}\ \text{is dimension of our word embedding which is usually 512, but that can vary if you are using pretrained word embeddings}$<br>
-$\text{The interger 10000 is represented as n}$
+Training: Like other deep learning models, transformer models are trained using stochastic gradient descent (or a variant thereof). The models are usually trained in a supervised manner, i.e., with a large dataset of inputs and corresponding target outputs.
+
+Fine-tuning: Once a transformer model has been pre-trained, it can be fine-tuned on a specific task using a smaller amount of task-specific data.
+
+Implementing transformers from scratch requires a good understanding of machine learning and deep learning principles, linear algebra, calculus. Most commonly, high-level APIs such as TensorFlow and PyTorch are used to implement Transformers (I have used Tensorflow), which simplify the implementation but still require understanding the underlying principles. It's also important to note that training transformer models typically requires significant computational resources (often GPUs).
 
 
-Let's see this in more detail by plotting these functions
+
