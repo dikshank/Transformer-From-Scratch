@@ -1,6 +1,7 @@
 # Transformer-From-Scratch
 
 ![image](https://github.com/dikshank/Transformer-From-Scratch/assets/65603832/ebd680f7-209a-4e39-8013-e812f85f46d6)
+
 The above image is complete transformer architecture
 
 ![image](https://github.com/dikshank/Transformer-From-Scratch/assets/65603832/b60b0ff0-0eba-4536-b6e7-ab4e93283c22)
